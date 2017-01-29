@@ -1,4 +1,5 @@
 <?php
+//http://www.w3schools.com/php/php_file_upload.asp
 $target_dir = "photo/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -41,4 +42,6 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
+
+
 ?>
