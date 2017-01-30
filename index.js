@@ -15,7 +15,7 @@ $(document).ready(function() {
       sendPhoto(photoURL);
     } else if (data.status == 'fail') {
       //handle error
-      console.log(data);
+      console.log(data.error);
     }
   })
 
