@@ -1,19 +1,28 @@
+
+//Used for response_array
+//http://stackoverflow.com/questions/9676084/how-do-i-return-a-proper-success-error-message-for-jquery-ajax-using-php
+
+//URL parsing
+//http://stackoverflow.com/questions/17497045/jquery-js-get-current-url-parent-directory
+
 $(document).ready(function() {
   $('#imageForm').ajaxForm(function(data) {
     if(data.status == 'success') {
-      console.log(data.file_name);
+      console.log(data);
       var myURL = window.location.href;
       var myDir = myURL.substring( 0, myURL.lastIndexOf( "/" ) + 1);
       photoURL = myDir + "photo/" + data.file_name;
-
       sendPhoto(photoURL);
-      console.log(myDir);
     } else if (data.status == 'fail') {
-      console.log("nooo!");
+      //handle error
+      console.log(data);
     }
   })
 
+  //Tried PHP this worked
+  //https://www.microsoft.com/cognitive-services/en-us/Face/documentation/QuickStarts/JavaScript
   function sendPhoto(photoURL) {
+    console.log("Senind to Microsoft ..." );
     var params = {
         // Request parameters
         "returnFaceId": "true",
@@ -29,7 +38,7 @@ $(document).ready(function() {
         },
         type: "POST",
         // Request body
-        data: JSON.stringify({url: "http://www.drodd.com/images15/face9.jpg"})
+        data: JSON.stringify({url: photoURL})
     })
     .done(function(data) {
         alert("success");
