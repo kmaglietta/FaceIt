@@ -7,14 +7,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="index.js"></script>
   <title>Face It</title>
 </head>
 <body ng-controller="MainControler">
-  <form id="imageForm" action="upload.php" method="post" enctype="multipart/form-data">
-    Select image:
-    <input type="file" name="fileToUpload" id="fileToUpload" />
-    <input type="submit" value="Upload Image" name="submit"  />
-  </form>
+  <div class="container-fluid">
+    <div class="row">
+      <form id="imageForm" action="upload.php" method="post" enctype="multipart/form-data">
+        Select image:
+        <input type="file" name="fileToUpload" id="fileToUpload" />
+        <input type="submit" value="Upload Image" name="submit"  />
+      </form>
+    </div>
+    <div class="row">
+      <p id="age"></p>
+      <p id="gender"></p>
+    </div>
+  </div>
 </body>
 </html>
