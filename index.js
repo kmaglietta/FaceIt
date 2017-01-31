@@ -3,7 +3,8 @@ var faceApp = angular.module('faceApp', ['ngRoute']);
 faceApp.controller('MainControler', function
 MainControler($scope, $http){
 
-  $scope.photoURL = "/";
+  $scope.photoURL = "smile.png";
+  $scope.photoName = ""
 
   $('#imageForm').ajaxForm(function(data) {
     if(data.status == 'success') {
@@ -14,9 +15,15 @@ MainControler($scope, $http){
       $scope.$apply();
     } else if (data.status == 'fail') {
       //handle error
-      console.log(data.error);
+      $scope.error = "Erro upload";
     }
   })
+
+  $('#fileToUpload').change(function(){
+    var name = $(this).val();
+    $scope.photoName = name.substring(name.lastIndexOf('\\') + 1);
+    $scope.$apply();
+  });
 
   $scope.sendData = function (photoURL) {
     console.log("Sending to Microsoft ..." );
@@ -40,9 +47,13 @@ MainControler($scope, $http){
 
     $http.post(apiURL, data, config)
     .success(function (data) {
-      if (data[0].faceAttributes) {
+      if (data[0]) {
         $scope.age = data[0].faceAttributes.age;
         $scope.gender = data[0].faceAttributes.gender;
+        $scope.error = null;
+      }
+      else {
+        $scope.error = "No Face";
       }
     })
     .error(function (data){

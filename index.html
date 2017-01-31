@@ -16,22 +16,45 @@
   <title>Face It</title>
 </head>
 <body ng-controller="MainControler">
-  <div class="container-fluid">
-    <div class="row">
-      <form id="imageForm" action="upload.php" method="post" enctype="multipart/form-data">
-        <input class="btn btn-secondary" type="file" name="fileToUpload" id="fileToUpload" />
-        <input class="btn btn-primary" type="submit" value="Anylize" name="submit"  />
-      </form>
-    </div>
-    <div class="row">
-      <div class="preview" >
-        <img id="preview" src="{{photoURL}}" />
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="navbar-brand">
+          Face It
+        </div>
       </div>
     </div>
+  </nav>
+  <div class="container-fluid">
     <div class="row">
-      {{age}}
-      {{gender}}
+      <div class="col-xs-12 col-sm-4"></div>
+      <div class="col-xs-12 col-sm-4">
+        <form id="imageForm" action="upload.php" method="post" enctype="multipart/form-data">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary">
+                Browse <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"/>
+              </span>
+            </label>
+            <input type="text" class="form-control" readonly="" value="{{photoName}}">
+          </div>
+          <input class="btn btn-block btn-primary" type="submit" value="Anylize" name="submit"  />
+        </form>
+        <div class="row">
+          <div class="preview ">
+            <img id="preview" src="{{photoURL}}" />
+          </div>
+        </div>
+        <div class="row">
+          <h1 class="bg-danger">{{error}} </h1>
+          <h1>Age: {{age}} </h1>
+          <h1>Gender: {{gender}} </h1>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4"></div>
+
     </div>
+
   </div>
 </body>
 </html>
