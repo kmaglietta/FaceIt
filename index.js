@@ -2,25 +2,28 @@ var faceApp = angular.module('faceApp', ['ngRoute']);
 
 faceApp.controller('MainControler', function
 MainControler($scope, $http){
+
+  $scope.photoURL = "/";
+
   $('#imageForm').ajaxForm(function(data) {
     if(data.status == 'success') {
-      console.log(data);
       var myURL = window.location.href;
       var myDir = myURL.substring( 0, myURL.lastIndexOf( "/" ) + 1);
-      photoURL = myDir + "photo/" + data.file_name;
-      $scope.sendDeata(photoURL);
+      $scope.photoURL = myDir + "photo/" + data.file_name;
+      $scope.sendData($scope.photoURL);
+      $scope.$apply();
     } else if (data.status == 'fail') {
       //handle error
       console.log(data.error);
     }
   })
 
-  $scope.sendDeata = function (photoURL) {
-    console.log("Senind to Microsoft ..." );
+  $scope.sendData = function (photoURL) {
+    console.log("Sending to Microsoft ..." );
     var params = {
         // Request parameters
         "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
+        "returnFaceLandmarks": "true",
         "returnFaceAttributes": "age,gender"
     };
 
@@ -37,7 +40,10 @@ MainControler($scope, $http){
 
     $http.post(apiURL, data, config)
     .success(function (data) {
-      console.log(data);
+      if (data[0].faceAttributes) {
+        $scope.age = data[0].faceAttributes.age;
+        $scope.gender = data[0].faceAttributes.gender;
+      }
     })
     .error(function (data){
       console.log("error");
