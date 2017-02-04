@@ -30,21 +30,20 @@
       <div class="col-xs-12 col-sm-4"></div>
       <div class="col-xs-12 col-sm-4">
         <form id="imageForm" action="upload.php" method="post" enctype="multipart/form-data">
-          <div class="input-group">
-            <label class="input-group-btn">
-              <span class="btn btn-primary">
-                Browse <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"/>
-              </span>
-            </label>
-            <input type="text" class="form-control" readonly="" value="{{photoName}}">
-          </div>
-          <input class="btn btn-block btn-primary" type="submit" value="Anylize" name="submit"  />
+          <label class="input-group-btn">
+            <span class="btn btn-block btn-primary">
+              Browse <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"/>
+            </span>
+            <input class="btn btn-block btn-primary" type="submit" value="Anylize" name="submit"  />
+          </label>
         </form>
+
         <div class="row">
           <div class="preview ">
             <img id="preview" src="{{photoURL}}" />
           </div>
         </div>
+        
         <div class="row">
           <h1 class="bg-danger">{{error}} </h1>
           <h1>Age: {{age}} </h1>

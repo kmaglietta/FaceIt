@@ -6,7 +6,9 @@ $uploadOk = 1;
 $uploadEx = 0;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $response_array;
+$valid_ex = array("jpg", "png", "jpeg", "gif");
 
+$new_name = time() . "." . $imageFileType;
 
 header('Content-type: application/json');
 if ($_POST["submit"]) {
@@ -28,9 +30,8 @@ if ($_FILES["fileToUpload"]["size"] > 1000000) {
     $uploadOk = 0;
 }
 // Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    $response_array['error'] = "Image not compatible: jpg, png, jpeg, gif";
+if(array_key_exists($imageFileType, $valid_ex)) {
+    $response_array['error'] = "File not compatible: jpg, png, jpeg, gif";
     $uploadOk = 0;
 }
 
@@ -40,10 +41,10 @@ if ($uploadOk == 0) {
   $response_array['status'] = "success";
   $response_array['file_name'] = basename( $_FILES["fileToUpload"]["name"]);
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $new_name)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
         $response_array['status'] = "success";
-        $response_array['file_name'] = basename( $_FILES["fileToUpload"]["name"]);
+        $response_array['file_name'] = $new_name;
     } else {
         $response_array['error'] = "Error on upload";
         $response_array['status'] = "fail";
