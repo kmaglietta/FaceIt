@@ -20,10 +20,6 @@ if ($_POST["submit"]) {
         $uploadOk = 0;
     }
 }
-
-if (file_exists($target_file)) {
-    $uploadEx = 1;
-}
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 1000000) {
     $response_array['error'] = "Image too large <proper file size>";
