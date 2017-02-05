@@ -19,9 +19,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <div class="navbar-brand">
-          Face It
-        </div>
+        <a class="navbar-brand" href="index.html">Face It</a>
       </div>
     </div>
   </nav>
@@ -34,15 +32,15 @@
             <span class="btn btn-block btn-primary">
               Browse <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"/>
             </span>
-            <input class="btn btn-block btn-primary" type="submit" value="Anylize" name="submit" ng-show="ready" />
+            <input class="btn btn-block btn-danger" type="submit" value="Anylize" name="submit" ng-show="ready" />
           </label>
         </form>
 
-        <div class="row preview">
+        <div class="row center">
           <img id="preview" src="{{photoURL}}" />
         </div>
 
-        <div class="row preview">
+        <div class="row center">
           <h1 class="bg-danger">{{error}} </h1>
           <h1>Age: {{age}} </h1>
           <h1>Gender: {{gender}} </h1>
@@ -53,5 +51,22 @@
     </div>
 
   </div>
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4"></div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="center">
+            <p>
+              Powered by Microsoft Cognative API
+            </p>
+            <a href="https://www.microsoft.com/cognitive-services/en-us/face-api">
+              <img src="https://www.microsoft.com/cognitive-services/Themes/ProjectOxford/Content/Images/microsoftLogo.png"  />
+            </a>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4"></div>
+      </div>
+  </footer>
 </body>
 </html>
