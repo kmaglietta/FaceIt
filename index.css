@@ -4,7 +4,6 @@ img {
 }
 
 .preview {
-  width: 200px;
-  height: 200px;
-  align-content: center;
+  margin-top: 10px;
+  text-align: center;
 }
