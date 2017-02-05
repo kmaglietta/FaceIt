@@ -2,45 +2,28 @@
 //http://www.w3schools.com/php/php_file_upload.asp
 $target_dir = "photo/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$uploadEx = 0;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$response_array;
-$valid_ex = array("jpg", "png", "jpeg", "gif");
-
 $new_name = time() . "." . $imageFileType;
 
+$uploadOk = 1;
+$response_array;
+$valid_ex = array("jpg", "jpeg", "png", "gif");
+
 header('Content-type: application/json');
-if ($_POST["submit"]) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-        $uploadOk = 1;
-    } else {
-        $response_array['error'] = "Not an image";
-        $uploadOk = 0;
-    }
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 1000000) {
-    $response_array['error'] = "Image too large <proper file size>";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if(array_key_exists($imageFileType, $valid_ex)) {
-    $response_array['error'] = "File not compatible: jpg, png, jpeg, gif";
+
+if(in_array($imageFileType, $valid_ex) != true) {
+    $response_array['error'] = "Only: " . implode(", ",$valid_ex);
     $uploadOk = 0;
 }
 
 if ($uploadOk == 0) {
   $response_array['status'] = "fail";
-} else if ($uploadEx == 1) {
-  $response_array['status'] = "success";
-  $response_array['file_name'] = basename( $_FILES["fileToUpload"]["name"]);
-} else {
+}
+else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $new_name)) {
-        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        $response_array['status'] = "success";
         $response_array['file_name'] = $new_name;
+        $response_array['status'] = "success";
+
     } else {
         $response_array['error'] = "Error on upload";
         $response_array['status'] = "fail";

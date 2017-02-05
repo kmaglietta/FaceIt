@@ -15,7 +15,8 @@ MainControler($scope, $http){
       $scope.$apply();
     } else if (data.status == 'fail') {
       //handle error
-      $scope.error = "Erro upload";
+      $scope.error = data.error;
+      $scope.$apply();
     }
   })
 
