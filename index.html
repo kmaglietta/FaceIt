@@ -34,7 +34,7 @@
             <span class="btn btn-block btn-primary">
               Browse <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;"/>
             </span>
-            <input class="btn btn-block btn-primary" type="submit" value="Anylize" name="submit"  />
+            <input class="btn btn-block btn-primary" type="submit" value="Anylize" name="submit" ng-show="ready" />
           </label>
         </form>
 
@@ -43,7 +43,7 @@
             <img id="preview" src="{{photoURL}}" />
           </div>
         </div>
-        
+
         <div class="row">
           <h1 class="bg-danger">{{error}} </h1>
           <h1>Age: {{age}} </h1>

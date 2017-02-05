@@ -4,7 +4,7 @@ faceApp.controller('MainControler', function
 MainControler($scope, $http){
 
   $scope.photoURL = "smile.png";
-  $scope.photoName = ""
+  $scope.ready = false;
 
   $('#imageForm').ajaxForm(function(data) {
     if(data.status == 'success') {
@@ -19,6 +19,11 @@ MainControler($scope, $http){
       $scope.$apply();
     }
   })
+
+  $('#fileToUpload').change(function(){
+    $scope.ready = true;
+    $scope.$apply();
+  });
 
   $scope.sendData = function (photoURL) {
     console.log("Sending to Microsoft ..." );
