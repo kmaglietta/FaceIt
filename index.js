@@ -20,12 +20,6 @@ MainControler($scope, $http){
     }
   })
 
-  $('#fileToUpload').change(function(){
-    var name = $(this).val();
-    $scope.photoName = name.substring(name.lastIndexOf('\\') + 1);
-    $scope.$apply();
-  });
-
   $scope.sendData = function (photoURL) {
     console.log("Sending to Microsoft ..." );
     var params = {
@@ -55,6 +49,8 @@ MainControler($scope, $http){
       }
       else {
         $scope.error = "No Face";
+        $scope.age = "Nope";
+        $scope.gender = "Nada";
       }
     })
     .error(function (data){
