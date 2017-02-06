@@ -37,16 +37,18 @@
         <form id="imageForm" action="upload.php" method="post" enctype="multipart/form-data">
           <label class="input-group-btn">
             <span class="btn btn-block btn-primary">
+              <!--Select file for upload-->
               Browse <input type="file" name="fileToUpload" id="fileToUpload"/>
             </span>
             <input class="btn btn-block btn-danger" type="submit" value="Anylize" name="submit" ng-show="ready" />
           </label>
         </form>
 
+        <!--Display photo-->
         <div class="row center">
           <img id="preview" src="{{photoURL}}" />
         </div>
-
+        <!--Display information passed from API-->
         <div class="row center">
           <h1 class="bg-danger">{{error}} </h1>
           <h1>Age: {{age}} </h1>
@@ -58,6 +60,7 @@
     </div>
 
   </div>
+  <!--A nice foorter-->
   <footer>
     <div class="container-fluid">
       <div class="row">
